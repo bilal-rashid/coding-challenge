@@ -24,3 +24,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.bg-back {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://admin.hypercare.com/static/media/Back.4e3339c1.png');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
