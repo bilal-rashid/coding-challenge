@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { useUsers } from "@/hooks/useUsers";
 import UserCard from "@/components/userCard";
 import LoadingView from "@/components/icons/LoadingView";
+import { User } from "@/utils/types";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 export default function Home() {
   const { users, loading, error } = useUsers();
 
-  const handleViewMore = (user: any) => {
+  const handleViewMore = (user: User) => {
     console.log('Show modal for:', user);
   };
   return (
