@@ -5,7 +5,7 @@ interface Props {
 export default function ErrorView({ errorMessage }: Props) {
     return (
         <div className="w-screen h-screen bg-white/30 flex flex-col flex-nowrap justify-center items-center">
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center">
                 <ErrorSvg/>
                 <span className="ml-3 text-white">{errorMessage}</span>
             </div>

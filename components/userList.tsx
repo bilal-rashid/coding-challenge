@@ -55,8 +55,8 @@ export default function UserList  ({ users }: Props)  {
                         <UserCard user={user} onViewMore={handleViewMore} />
                     </div>
                 ))}
-                <div ref={loaderRef} className="h-10 col-span-full"></div>
             </div>
+            <div ref={loaderRef} className="h-10 col-span-full"></div>
             
             <UserDialog
                 user={selectedUser} 
