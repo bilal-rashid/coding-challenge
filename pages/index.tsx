@@ -1,8 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { useUsers } from "@/hooks/useUsers";
-import UserCard from "@/components/userCard";
-import LoadingView from "@/components/icons/LoadingView";
-import { User } from "@/utils/types";
+import UserList from "@/components/userList";
+import LoadingView from "@/components/loadingView";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +15,6 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
   const { users, loading, error } = useUsers();
-
-  const handleViewMore = (user: User) => {
-    console.log('Show modal for:', user);
-  };
   return (
     <>
       <div className="bg-back"></div>
@@ -27,12 +22,7 @@ export default function Home() {
       <div className={`${geistSans.className} ${geistMono.className} min-h-screen font-[family-name:var(--font-geist-sans)] relative overflow-auto h-screen`}>
 
         {loading && (
-            <div className="w-screen h-screen bg-white/30 flex flex-col flex-nowrap justify-center items-center">
-              <div className="flex flex-col">
-                <LoadingView/>
-                <span className="ml-3 text-white">Loading users...</span>
-              </div>
-            </div>
+            <LoadingView/>
         )}
         <main className="px-4 sm:px-8 md:px-16 pb-10 flex flex-col flex-nowrap justify-center items-center">
           
@@ -43,13 +33,7 @@ export default function Home() {
           )}
           
           {!loading && !error && (
-            <div className="columns-1 gap-6 sm:columns-2 xl:columns-3 space-y-6 max-w-7xl">
-              {users.map((user) => (
-                <div key={user.id} className="break-inside-avoid mb-6">
-                  <UserCard user={user} onViewMore={handleViewMore} />
-                </div>
-              ))}
-            </div>
+            <UserList users={users}/>
           )}
         </main>
         
