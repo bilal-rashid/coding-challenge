@@ -35,5 +35,9 @@ body {
   background-size: cover;
   background-position: center;
   z-index: -1;
-  opacity: 70%;
+}
+.hyper-care-logo {
+  width: 50%;
+  max-width: 300px;
+  object-fit: contain;
 }

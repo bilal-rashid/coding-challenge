@@ -79,9 +79,13 @@ export default function Home() {
         <main className="px-4 sm:px-8 md:px-16 pb-10 flex flex-col flex-nowrap justify-center items-center">
           {!loading && !error && (
             <>
-              <h1 className="text-3xl font-bold text-center mb-6 mt-8 text-whitet">
-                User Directory
-              </h1>
+              <div className="hyper-care-logo mb-6 mt-8">
+                <img src="https://admin.hypercare.com/static/media/horizontal-logo-white.be044a4b.svg" alt="hypercare white logo"/>
+
+              </div>
+              {/*<h1 className="text-3xl font-bold text-center mb-6 mt-8 text-gray-50">*/}
+              {/*  User Directory*/}
+              {/*</h1>*/}
               
               <SearchBar
                 searchTerm={searchTerm}
