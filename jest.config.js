@@ -29,6 +29,8 @@ module.exports = {
     '!next.config.ts',
     '!**/pages/**',
     '!**/components/errorView.tsx',
+    '!**/components/emptyView.tsx',
+    '!**/hooks/useDebounce.ts',
     '!**/components/loadingView.tsx',
     '!**/components/icons/**',
   ],
