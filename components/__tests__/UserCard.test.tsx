@@ -24,15 +24,9 @@ describe('UserCard', () => {
 
   it('renders user information correctly', () => {
     render(<UserCard user={mockUser} onViewMore={mockOnViewMore} />);
-    
-    // Check if name is displayed (using regex for flexibility)
     expect(screen.getByText(/Rouvin/)).toBeInTheDocument();
     expect(screen.getByText(/Gatfield/)).toBeInTheDocument();
-    
-    // Check if description is displayed (truncated)
     expect(screen.getByText(/Ut tellus/)).toBeInTheDocument();
-    
-    // Check if avatar is rendered with correct alt text
     const avatar = screen.getByAltText("Rouvin Gatfield");
     expect(avatar).toBeInTheDocument();
     expect(avatar).toHaveAttribute('src', mockUser.avatar);
@@ -40,28 +34,20 @@ describe('UserCard', () => {
 
   it('calls onViewMore when button is clicked', () => {
     render(<UserCard user={mockUser} onViewMore={mockOnViewMore} />);
-    
-    // Find and click the View More button
     const viewMoreButton = screen.getByText('View More');
     fireEvent.click(viewMoreButton);
-    
-    // Check if the onViewMore callback was called with the user object
     expect(mockOnViewMore).toHaveBeenCalledTimes(1);
     expect(mockOnViewMore).toHaveBeenCalledWith(mockUser);
   });
 
   it('has the correct fixed height', () => {
     const { container } = render(<UserCard user={mockUser} onViewMore={mockOnViewMore} />);
-    
-    // Check if the card has the correct height class
     const cardElement = container.firstChild;
     expect(cardElement).toHaveClass('h-[450px]');
   });
 
   it('has the correct gradient background', () => {
     const { container } = render(<UserCard user={mockUser} onViewMore={mockOnViewMore} />);
-    
-    // Check if the card has the correct background gradient class
     const cardElement = container.firstChild;
     expect(cardElement).toHaveClass('bg-[linear-gradient(to_bottom,white_0%,white_41%,#F3708D_41%,#F3708D_100%)]');
   });
