@@ -49,9 +49,9 @@ export default function UserList  ({ users }: Props)  {
 
     return (
         <>
-            <div className="columns-1 gap-6 sm:columns-2 xl:columns-3 space-y-6 max-w-7xl">
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 max-w-7xl">
                 {visibleUsers.map((user) => (
-                    <div key={user.id} className="break-inside-avoid mb-6">
+                    <div key={user.id}>
                         <UserCard user={user} onViewMore={handleViewMore} />
                     </div>
                 ))}
