@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { User } from '@/utils/types';
 
 interface UserDialogProps {
@@ -7,7 +7,23 @@ interface UserDialogProps {
   onClose: () => void;
 }
 export default function UserDialog({ user, isOpen, onClose }: UserDialogProps) {
-  if (!isOpen || !user) return null;
+  const [isVisible, setIsVisible] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
+  
+  useEffect(() => {
+    if (isOpen && user) {
+      setShouldRender(true);
+      // Small delay to ensure the component is rendered before adding the visible class
+      setTimeout(() => setIsVisible(true), 10);
+    } else {
+      setIsVisible(false);
+      // Wait for the animation to complete before unmounting
+      const timeout = setTimeout(() => setShouldRender(false), 300);
+      return () => clearTimeout(timeout);
+    }
+  }, [isOpen, user]);
+  
+  if (!shouldRender || !user) return null;
 
   const formatDate = (dateStr: string) => {
     try {
@@ -23,8 +39,8 @@ export default function UserDialog({ user, isOpen, onClose }: UserDialogProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-[#F5E2E6] bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className={`fixed inset-0 bg-[#F5E2E6] bg-opacity-50 flex items-center justify-center z-50 p-4 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`bg-white rounded-3xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col transition-transform duration-300 ${isVisible ? 'scale-100' : 'scale-95'}`}>
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10 cursor-pointer"
