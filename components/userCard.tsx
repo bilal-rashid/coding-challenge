@@ -5,8 +5,7 @@ interface UserCardProps {
     user: User;
     onViewMore: (user: User) => void;
 }
-
-const UserCard: React.FC<UserCardProps> = ({ user, onViewMore }) => {
+export default function UserCard({ user, onViewMore }: UserCardProps) {
     return (
         <div className="bg-white rounded-3xl shadow-md overflow-hidden w-full max-w-sm mx-auto h-[450px] flex flex-col bg-[linear-gradient(to_bottom,white_0%,white_41%,#F3708D_41%,#F3708D_100%)] opacity-95">
             <div className="h-[41%] bg-[#F3708D] flex justify-center items-center py-10 rounded-bl-[30px]">
@@ -39,5 +38,3 @@ const UserCard: React.FC<UserCardProps> = ({ user, onViewMore }) => {
         </div>
     );
 };
-
-export default UserCard;
