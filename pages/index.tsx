@@ -7,6 +7,8 @@ import SearchBar from "@/components/SearchBar";
 import { useState, useMemo, useEffect } from "react";
 import { User } from "@/utils/types";
 import { useDebounce } from "@/hooks/useDebounce";
+import EmptySvg from "@/components/icons/EmptySvg";
+import EmptyView from "@/components/emptyView";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,6 +73,9 @@ export default function Home() {
         {error && (
             <ErrorView errorMessage={error}/>
         )}
+        {users.length === 0 && (
+            <EmptyView/>
+        )}
         <main className="px-4 sm:px-8 md:px-16 pb-10 flex flex-col flex-nowrap justify-center items-center">
           {!loading && !error && (
             <>
@@ -87,14 +92,15 @@ export default function Home() {
               />
               
               {(debouncedSearchTerm !== '' || selectedRole !== '') && filteredUsers.length === 0 && (
-                <div className="text-center py-10">
-                  <p className="text-gray-500 text-lg">No users found matching your search criteria.</p>
+                <div className="flex flex-col items-center text-center py-10">
+                  <EmptySvg/>
+                  <p className="text-gray-100 text-lg mt-4">No users found matching your search.</p>
                   <button 
                     onClick={() => {
                       setSearchTerm('');
                       setSelectedRole('');
                     }}
-                    className="mt-4 px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition"
+                    className="mt-4 px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition text-gray-700 cursor-pointer"
                   >
                     Clear Search
                   </button>
@@ -107,7 +113,6 @@ export default function Home() {
         </main>
         
         <footer className="py-4 text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} User Directory. All rights reserved.</p>
         </footer>
       </div>
     </>
