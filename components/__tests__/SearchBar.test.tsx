@@ -6,7 +6,7 @@ describe('SearchBar', () => {
   const mockProps = {
     searchTerm: '',
     selectedRole: '',
-    roles: ['Admin', 'User', 'Manager'],
+    roles: ['Surveyor', 'Engineer', 'Architect', 'Supervisor'],
     onSearchTermChange: jest.fn(),
     onRoleChange: jest.fn(),
   };
@@ -30,9 +30,10 @@ describe('SearchBar', () => {
     expect(roleSelect).toHaveValue('');
     
     expect(screen.getByText('All Roles')).toBeInTheDocument();
-    expect(screen.getByText('Admin')).toBeInTheDocument();
-    expect(screen.getByText('User')).toBeInTheDocument();
-    expect(screen.getByText('Manager')).toBeInTheDocument();
+    expect(screen.getByText('Surveyor')).toBeInTheDocument();
+    expect(screen.getByText('Engineer')).toBeInTheDocument();
+    expect(screen.getByText('Architect')).toBeInTheDocument();
+    expect(screen.getByText('Supervisor')).toBeInTheDocument();
   });
 
   it('calls onSearchTermChange when input value changes', () => {

@@ -49,6 +49,6 @@ describe('UserCard', () => {
   it('has the correct gradient background', () => {
     const { container } = render(<UserCard user={mockUser} onViewMore={mockOnViewMore} />);
     const cardElement = container.firstChild;
-    expect(cardElement).toHaveClass('bg-[linear-gradient(to_bottom,white_0%,white_41%,#F3708D_41%,#F3708D_100%)]');
+    expect(cardElement).toHaveClass('bg-[linear-gradient(to_bottom,white_0%,white_41%,#d20f39_41%,#d20f39_100%)]');
   });
 });
